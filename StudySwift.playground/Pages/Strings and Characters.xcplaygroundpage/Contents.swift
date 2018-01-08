@@ -258,73 +258,154 @@ greeting[index]
 for index in greeting.indices {
     print("\(greeting[index])", terminator:" ")
 }
+print("以上为\(#line)行打印\n----------")
 // 打印输出 "G u t e n   T a g ! "
 /*
  注意：
  您可以使用 startIndex 和 endIndex 属性或者 index(before:) 、index(after:) 和 index(_:offsetBy:) 方法在任意一个确认的并遵循 Collection 协议的类型里面，如上文所示是使用在 String 中，您也可以使用在 Array、Dictionary 和 Set中。
  */
 
+/// Inserting and Removing 插入和删除
+var welcome2 = "hello"
+welcome2.insert("!", at: welcome2.endIndex)
+// welcome now equals "hello!"
+
+welcome2.insert(contentsOf: " Teaocat", at: welcome2.index(before: welcome2.endIndex))
+// welcome now equals "hello Teaocat!"
+
+welcome2.remove(at: welcome2.index(before: welcome2.endIndex))
+print(welcome2 + "\n以上为\(#line)行打印\n----------")
+
+let range = welcome2.startIndex..<welcome2.index(welcome2.endIndex, offsetBy: -7)
+welcome2.removeSubrange(range)
 
 
+/// SubStrings 子字符串
+let greeting2 = "Hello, Teaocat!"
+let index2 = greeting2.index(of: "T") ?? greeting2.endIndex
+let beginning = greeting2[index2..<greeting2.index(before: greeting2.endIndex)]
+
+// 把结果转化为 String 以便长期存储。
+let newString = String(beginning)
 
 
+/// Comparing Strings 比较字符串
+// Swift 提供了三种方式来比较文本值：字符串字符相等、前缀相等和后缀相等。
 
+/// 字符串/字符相等
+// 字符串/字符可以用等于操作符(==)和不等于操作符(!=)
+let quotation2 = "We're a lot alike, you and I."
+let sameQuotation2 = "We're a lot alike, you and I."
+if quotation2 == sameQuotation2 {
+    print("These two strings are considered equal\n以上为\(#line)行打印\n----------")
+}
+// 打印输出 "These two strings are considered equal"
 
+/*
+ 如果两个字符串（或者两个字符）的可扩展的字形群集是标准相等的，那就认为它们是相等的。在这个情况下，即使可扩展的字形群集是有不同的 Unicode 标量构成的，只要它们有同样的语言意义和外观，就认为它们标准相等。
+ */
+// "Voulez-vous un café?" 使用 LATIN SMALL LETTER E WITH ACUTE
+let eAcuteQuestion = "Voulez-vous un caf\u{E9}?"
 
+// "Voulez-vous un café?" 使用 LATIN SMALL LETTER E and COMBINING ACUTE ACCENT
+let combinedEAcuteQuestion = "Voulez-vous un caf\u{65}\u{301}?"
 
+if eAcuteQuestion == combinedEAcuteQuestion {
+    print("These two strings are considered equal\n以上为\(#line)行打印\n----------")
+}
+// 打印输出 "These two strings are considered equal"
 
+/*
+ 相反，英语中的LATIN CAPITAL LETTER A(U+0041，或者A)不等于俄语中的CYRILLIC CAPITAL LETTER A(U+0410，或者A)。两个字符看着是一样的，但却有不同的语言意义：
+ */
+let latinCapitalLetterA: Character = "\u{41}"
 
+let cyrillicCapitalLetterA: Character = "\u{0410}"
 
+if latinCapitalLetterA != cyrillicCapitalLetterA {
+    print("These two characters are not equivalent")
+}
+// 打印 "These two characters are not equivalent"
+/*
+ 注意：
+ 在 Swift 中，字符串和字符并不区分地域(not locale-sensitive)。
+ */
 
+/// Prefix and Suffix Equality 前缀/后缀相等
+// 通过调用字符串的hasPrefix(_:)/hasSuffix(_:)方法来检查字符串是否拥有特定前缀/后缀，两个方法均接收一个String类型的参数，并返回一个布尔值。
 
+// 下面的例子以一个字符串数组表示莎士比亚话剧《罗密欧与朱丽叶》中前两场的场景位置：
+let romeoAndJuliet = [
+    "Act 1 Scene 1: Verona, A public place",
+    "Act 1 Scene 2: Capulet's mansion",
+    "Act 1 Scene 3: A room in Capulet's mansion",
+    "Act 1 Scene 4: A street outside Capulet's mansion",
+    "Act 1 Scene 5: The Great Hall in Capulet's mansion",
+    "Act 2 Scene 1: Outside Capulet's mansion",
+    "Act 2 Scene 2: Capulet's orchard",
+    "Act 2 Scene 3: Outside Friar Lawrence's cell",
+    "Act 2 Scene 4: A street in Verona",
+    "Act 2 Scene 5: Capulet's mansion",
+    "Act 2 Scene 6: Friar Lawrence's cell"
+]
 
+// 您可以调用hasPrefix(_:)方法来计算话剧中第一幕的场景数：
+var act1SceneCount = 0
+for scene in romeoAndJuliet {
+    if scene.hasPrefix("Act 1 ") {
+        act1SceneCount += 1
+    }
+}
+print("There are \(act1SceneCount) scenes in Act 1\n以上为\(#line)行打印\n----------")
+// 打印输出 "There are 5 scenes in Act 1"
 
+// 相似地，您可以用hasSuffix(_:)方法来计算发生在不同地方的场景数：
+var mansionCount = 0
+var cellCount = 0
+for scene in romeoAndJuliet {
+    if scene.hasSuffix("Capulet's mansion") {
+        mansionCount += 1
+    } else if scene.hasSuffix("Friar Lawrence's cell") {
+        cellCount += 1
+    }
+}
+print("\(mansionCount) mansion scenes; \(cellCount) cell scenes\n以上为\(#line)行打印\n----------")
+// 打印输出 "6 mansion scenes; 2 cell scenes"
+/*
+ 注意：
+ hasPrefix(_:)和hasSuffix(_:)方法都是在每个字符串中逐字符比较其可扩展的字符群集是否标准相等
+ */
 
+/// 字符串的 Unicode 表示形式
+let dogString = "Dog‼🐶"
 
+for codeUnit in dogString.utf8 {
+    print("\(codeUnit)", terminator: " ")
+}
+print("以上为\(#line)行打印\n----------")
+// 68 111 103 226 128 188 240 159 144 182
 
+for codeUnit in dogString.utf16 {
+    print("\(codeUnit)", terminator: " ")
+}
+print("以上为\(#line)行打印\n----------")
+// 68 111 103 8252 55357 56374
 
+for scalar in dogString.unicodeScalars {
+    print("\(scalar.value)", terminator: " ")
+}
+print("以上为\(#line)行打印\n----------")
+// 68 111 103 8252 128054
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for scalar in dogString.unicodeScalars {
+    print("\(scalar)")
+}
+print("以上为\(#line)行打印\n----------")
+// D
+// o
+// g
+// ‼
+// 🐶
 
 
 
