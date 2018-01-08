@@ -178,13 +178,10 @@ print(message + "\n以上为\(#line)行打印\n----------")
  注意：
  插值字符串中写在括号中的表达式不能包含非转义反斜杠 (\)，并且不能包含回车或换行符。不过，插值字符串可以包含其他字面量。
 */
-
-
 /// Unicode
 /*
 Unicode是一个国际标准，用于文本的编码和表示。 它使您可以用标准格式表示来自任意语言几乎所有的字符，并能够对文本文件或网页这样的外部资源中的字符进行读写操作。 Swift 的String和Character类型是完全兼容 Unicode 标准的。
 */
-
 /// Unicode 标量
 /*
 Swift 的String类型是基于 Unicode 标量 建立的。 Unicode 标量是对应字符或者修饰符的唯一的21位数字，例如U+0061表示小写的拉丁字母(LATIN SMALL LETTER A)("a")，U+1F425表示小鸡表情(FRONT-FACING BABY CHICK) ("🐥")。
@@ -284,7 +281,6 @@ welcome2.removeSubrange(range)
 let greeting2 = "Hello, Teaocat!"
 let index2 = greeting2.index(of: "T") ?? greeting2.endIndex
 let beginning = greeting2[index2..<greeting2.index(before: greeting2.endIndex)]
-
 // 把结果转化为 String 以便长期存储。
 let newString = String(beginning)
 
@@ -300,7 +296,6 @@ if quotation2 == sameQuotation2 {
     print("These two strings are considered equal\n以上为\(#line)行打印\n----------")
 }
 // 打印输出 "These two strings are considered equal"
-
 /*
  如果两个字符串（或者两个字符）的可扩展的字形群集是标准相等的，那就认为它们是相等的。在这个情况下，即使可扩展的字形群集是有不同的 Unicode 标量构成的，只要它们有同样的语言意义和外观，就认为它们标准相等。
  */
@@ -314,7 +309,6 @@ if eAcuteQuestion == combinedEAcuteQuestion {
     print("These two strings are considered equal\n以上为\(#line)行打印\n----------")
 }
 // 打印输出 "These two strings are considered equal"
-
 /*
  相反，英语中的LATIN CAPITAL LETTER A(U+0041，或者A)不等于俄语中的CYRILLIC CAPITAL LETTER A(U+0410，或者A)。两个字符看着是一样的，但却有不同的语言意义：
  */
@@ -333,7 +327,6 @@ if latinCapitalLetterA != cyrillicCapitalLetterA {
 
 /// Prefix and Suffix Equality 前缀/后缀相等
 // 通过调用字符串的hasPrefix(_:)/hasSuffix(_:)方法来检查字符串是否拥有特定前缀/后缀，两个方法均接收一个String类型的参数，并返回一个布尔值。
-
 // 下面的例子以一个字符串数组表示莎士比亚话剧《罗密欧与朱丽叶》中前两场的场景位置：
 let romeoAndJuliet = [
     "Act 1 Scene 1: Verona, A public place",
@@ -348,7 +341,6 @@ let romeoAndJuliet = [
     "Act 2 Scene 5: Capulet's mansion",
     "Act 2 Scene 6: Friar Lawrence's cell"
 ]
-
 // 您可以调用hasPrefix(_:)方法来计算话剧中第一幕的场景数：
 var act1SceneCount = 0
 for scene in romeoAndJuliet {
@@ -358,7 +350,6 @@ for scene in romeoAndJuliet {
 }
 print("There are \(act1SceneCount) scenes in Act 1\n以上为\(#line)行打印\n----------")
 // 打印输出 "There are 5 scenes in Act 1"
-
 // 相似地，您可以用hasSuffix(_:)方法来计算发生在不同地方的场景数：
 var mansionCount = 0
 var cellCount = 0
@@ -406,55 +397,3 @@ print("以上为\(#line)行打印\n----------")
 // g
 // ‼
 // 🐶
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
