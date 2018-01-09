@@ -52,6 +52,9 @@ print("以上在\(#line)打印\n----------")
 let minutes = 60
 for tickMark in 0..<minutes {
     // render the tick mark each minute (60 times)
+    if tickMark == 60 {
+        print("\(tickMark)")
+    }
 }
 print("以上在\(#line)打印\n----------")
 // 一些用户可能在其UI中可能需要较少的刻度。他们可以每5分钟作为一个刻度。使用 stride(from:to:by:) 函数跳过不需要的标记。
@@ -499,10 +502,10 @@ func greet(person: [String: String]) {
     }
     print("I hope the weather is nice in \(location).")
 }
-greet(["name": "John"])
+greet(person: ["name": "John"])
 // 输出 "Hello John!"
 // 输出 "I hope the weather is nice near you."
-greet(["name": "Jane", "location": "Cupertino"])
+greet(person: ["name": "Jane", "location": "Cupertino"])
 // 输出 "Hello Jane!"
 // 输出 "I hope the weather is nice in Cupertino."
 print("以上在\(#line)打印\n----------")
