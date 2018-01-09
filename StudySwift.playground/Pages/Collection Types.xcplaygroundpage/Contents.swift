@@ -343,10 +343,13 @@ for airportName in airports.values {
 // Airport name: London Heathrow
 print("以上在\(#line)打印\n----------")
 
+// 如果我们只是需要使用某个字典的键集合或者值集合来作为某个接受Array实例的 API 的参数，可以直接使用keys或者values属性构造一个新数组：
 let airportCodes = [String](airports.keys)
 // airportCodes 是 ["YYZ", "LHR"]
 
-// 如果我们只是需要使用某个字典的键集合或者值集合来作为某个接受Array实例的 API 的参数，可以直接使用keys或者values属性构造一个新数组：
 let airportNames = [String](airports.values)
 // airportNames 是 ["Toronto Pearson", "London Heathrow"]
 print("以上在\(#line)打印\n----------")
+
+
+// Swift 的字典类型是无序集合类型。为了以特定的顺序遍历字典的键或值，可以对字典的keys或values属性使用sorted()方法。
