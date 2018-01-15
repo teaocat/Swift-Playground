@@ -102,5 +102,5 @@ matrix[0, 1] = 1.5
 matrix[1, 0] = 3.6
 
 // 断言在下标越界时触发：
-let someValue = matrix[2, 2]
+// let someValue = matrix[2, 2] 
 // 断言将会触发，因为 [2, 2] 已经超过了 matrix 的范围
