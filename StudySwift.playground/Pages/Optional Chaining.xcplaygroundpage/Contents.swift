@@ -237,6 +237,7 @@ if let johnsStreet = john2.residence?.address?.street {
     print("Unable to retrieve the address.")
 }
 // 打印 “Unable to retrieve the address.”
+print("第\(#line)行上打印\n==========")
 
 /*
  john.residence现在包含一个有效的Residence实例。然而，john.residence.address的值当前为nil。因此，调用john.residence?.address?.street会失败。
@@ -256,6 +257,7 @@ if let johnsStreet = john2.residence?.address?.street {
     print("Unable to retrieve the address.")
 }
 // 打印 “John's street name is Laurel Street.”
+print("第\(#line)行上打印\n==========")
 
 
 /// Chaining on Methods with Optional Return Values 在方法的可选返回值上进行可选链式调用
@@ -268,6 +270,7 @@ if let buildingIdentifier = john2.residence?.address?.buildingIdentifier() {
     print("John's building identifier is \(buildingIdentifier).")
 }
 // 打印 “John's building identifier is The Larches.”
+print("第\(#line)行上打印\n==========")
 
 // 如果要在该方法的返回值上进行可选链式调用，在方法的圆括号后面加上问号即可：
 if let beginsWithThe = john2.residence?.address?.buildingIdentifier()?.hasPrefix("The") {
@@ -278,6 +281,7 @@ if let beginsWithThe = john2.residence?.address?.buildingIdentifier()?.hasPrefix
     }
 }
 // 打印 “John's building identifier begins with "The".”
+print("第\(#line)行上打印\n==========")
 /*
  注意
  在上面的例子中，在方法的圆括号后面加上问号是因为你要在buildingIdentifier()方法的可选返回值上进行可选链式调用，而不是方法本身。
