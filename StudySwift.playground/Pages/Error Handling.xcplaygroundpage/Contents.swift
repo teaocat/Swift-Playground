@@ -140,12 +140,13 @@ do {
  
  如果你想对所有的错误都采用同样的方式来处理，用try?就可以让你写出简洁的错误处理代码。例如，下面的代码用几种方式来获取数据，如果所有方式都失败了则返回nil。
  */
+/*
 func fetchData() -> Data? {
     if let data = try? fetchDataFromDisk() { return data }
     if let data = try? fetchDataFromServer() { return data }
     return nil
 }
-
+*/
 
 /// Disabling Error Propagation 禁用错误传递
 /*
@@ -153,7 +154,7 @@ func fetchData() -> Data? {
  
  例如，下面的代码使用了loadImage(atPath:)函数，该函数从给定的路径加载图片资源，如果图片无法载入则抛出一个错误。在这种情况下，因为图片是和应用绑定的，运行时不会有错误抛出，所以适合禁用错误传递。
  */
-let photo = try! loadImage(atPath: "./Resources/John Appleseed.jpg")
+// let photo = try! loadImage(atPath: "./Resources/John Appleseed.jpg")
 
 
 /// Specifying Cleanup Actions 指定清理操作
@@ -162,6 +163,7 @@ let photo = try! loadImage(atPath: "./Resources/John Appleseed.jpg")
  
  defer语句将代码的执行延迟到当前的作用域退出之前。该语句由defer关键字和要被延迟执行的语句组成。延迟执行的语句不能包含任何控制转移语句，例如break、return语句，或是抛出一个错误。延迟执行的操作会按照它们声明的顺序从后往前执行——也就是说，第一条defer语句中的代码最后才执行，第二条defer语句中的代码倒数第二个执行，以此类推。最后一条语句会第一个执行
  */
+/*
 func processFile(filename: String) throws {
     if exists(filename) {
         let file = open(filename)
@@ -173,7 +175,7 @@ func processFile(filename: String) throws {
         }
         // close(file) 会在这里被调用，即作用域的最后。
     }
-}
+}*/
 /*
  上面的代码使用一条defer语句来确保open(_:)函数有一个相应的对close(_:)函数的调用。
  
