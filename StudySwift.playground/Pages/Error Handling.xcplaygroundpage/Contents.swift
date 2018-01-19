@@ -125,6 +125,7 @@ do {
 /// Converting Errors to Optional Values 将错误转换成可选值
 func someThrowingFunction() throws -> Int {
     // ...
+    return 0
 }
 
 let x = try? someThrowingFunction()
