@@ -25,5 +25,6 @@
         <page name='Protocols'/>
         <page name='Generics'/>
         <page name='Automatic Reference Counting'/>
+        <page name='Memory Safety'/>
     </pages>
 </playground>
